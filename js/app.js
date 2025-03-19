@@ -12,12 +12,13 @@ const validateForm = (e) => {
     const searchTerm = document.querySelector('#termino').value
     if ( searchTerm === '') {
         showAlert('Ingresa un término de búsqueda')
+        return 
     }
+
+    searchImages(searchTerm)
 }
 
 const showAlert = ( message ) => {
-
-
 
     const alertExists = document.querySelector('.bg-red-100')
 
@@ -37,4 +38,13 @@ const showAlert = ( message ) => {
         }, 3000);
     }
 
+}
+
+const searchImages = ( term ) => {
+    const key = '38074034-e295cb61916fa6e6a344f77f3';
+    const url = `https://pixabay.com/api/?key=${key}&q=${term}`;
+
+    fetch(url)
+        .then( response => response.json() )
+        .then( result => console.log( result ) )
 }
